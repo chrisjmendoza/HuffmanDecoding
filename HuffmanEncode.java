@@ -15,6 +15,28 @@ public class HuffmanEncode {
 	public HuffmanEncode(File object) throws IOException {
 		output = new FileReader(object);
 	}
+	
+	/**
+	 * Reads the filename and creates a File Object which will be used in a FileInputStream
+	 * This changes the program to encode in bytes rather than characters.
+	 * @param fileName
+	 */
+	public HuffmanEncode(String fileName) {
+		
+	}
+	
+	/**
+	 * Reads the FileInputStream and counts the occurrence of every byte.
+	 * Fills the PriorityQueue with the nodes that you create out of the bytes and occurrences.
+	 * Builds the Huffman Tree
+	 * Traverses the Huffman Tree
+	 */
+	public void encodeByteStream() {
+		
+		// The Traversal method should store the following info into a HashMap<K, V> for every leaf node
+		// Bytes as K (key) of type Integer (don't use Byte because of signed problem)
+		// Huffman Code as V (value) of type String
+	}
 
 	public void encode() throws IOException {
 		HashMap<Character, Integer> valFreq = new HashMap<Character, Integer>();
@@ -22,7 +44,7 @@ public class HuffmanEncode {
 		while ((c = output.read()) != -1) {
 			valFreq.putIfAbsent((char) c, 0);
 			valFreq.replace((char) c, valFreq.get((char) c) + 1);
-			//System.out.println(c + " " + valFreq.get((char) c));
+			// System.out.println(c + " " + valFreq.get((char) c));
 		}
 		output.close();
 
@@ -53,12 +75,12 @@ public class HuffmanEncode {
 		Map<Character, String> charMap = genMap(overallRoot);
 
 		// Output the values from the generated character map
-		//System.out.println(charMap.toString());
+		// System.out.println(charMap.toString());
 
 		// NEED TO PRINT OUT THE CHARACTER _ BINARYPATH _ # OF OCCURRENCES
 
-		for(Character letter: charMap.keySet()) {
-			System.out.print(letter + " " + charMap.get(letter) + " "+ valFreq.get(letter));
+		for (Character letter : charMap.keySet()) {
+			System.out.print(letter + " " + charMap.get(letter) + " " + valFreq.get(letter));
 			System.out.println();
 		}
 	}
@@ -90,7 +112,7 @@ public class HuffmanEncode {
 			traversal(map, root.rightChild, path + '1');
 		}
 	}
-	
+
 	/**
 	 * @author Chris Mendoza
 	 * 

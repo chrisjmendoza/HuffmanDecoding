@@ -44,16 +44,24 @@ In order for the file to be decoded you need to write the coding information (Hu
 File Header Info:
 
 long numberOfBytes;  // Number of bytes in original file. 
-                                          // You cannot write long directly, you need to split that number into
-                                         // bytes. Requirement: The highest significant byte first
+
+// You cannot write long directly, you need to split that number into
+
+// bytes. Requirement: The highest significant byte first
+
 int numberOfSymbols;  // Bytes found in the original file that got encoded
 for each symbol you write
+
 byte symbolValue;
+
 byte codeLength; // the length of the “01010111” codeString for this symbol
+
 byte(s) codeBits // for each ‘0’ a bit 0 and for each ‘1’ a bit 1 set. The # of codeBits
-                                // is determined by the codeLength (<=8 one byte, >8 <=16 two bytes etc.)
+
+// is determined by the codeLength (<=8 one byte, >8 <=16 two bytes etc.)
 
 After this header the bit stream of the encoded bytes follow. Here is an example:
+
 Assuming you have the following mapping (I use chars as symbols for simplicity)
 'T' ‘110100’, 'h' ‘10111’, 'e' ‘1001’, ' ' ‘111’,  'b' ‘011100’ the foxtext.hzip file would start right after the above described File Header Info with the following 3 bytes (Each block represents a byte in the file):
 

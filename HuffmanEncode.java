@@ -18,7 +18,7 @@ public class HuffmanEncode {
 
 	/**
 	 * Reads the filename and creates a File Object which will be used in a
-	 * FileInputStream This changes the program to encode in bytes rather than
+	 * FileInputStream. This changes the program to encode in bytes rather than
 	 * characters.
 	 * 
 	 * @param fileName
@@ -30,7 +30,7 @@ public class HuffmanEncode {
 	/**
 	 * Reads the FileInputStream and counts the occurrence of every byte. Fills
 	 * the PriorityQueue with the nodes that you create out of the bytes and
-	 * occurrences. Builds the Huffman Tree Traverses the Huffman Tree
+	 * occurrences. Builds the Huffman Tree and Traverses the Huffman Tree.
 	 */
 	public void encodeByteStream() {
 

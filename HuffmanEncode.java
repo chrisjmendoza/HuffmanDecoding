@@ -15,27 +15,74 @@ public class HuffmanEncode {
 	public HuffmanEncode(File object) throws IOException {
 		output = new FileReader(object);
 	}
-	
+
 	/**
-	 * Reads the filename and creates a File Object which will be used in a FileInputStream
-	 * This changes the program to encode in bytes rather than characters.
+	 * Reads the filename and creates a File Object which will be used in a
+	 * FileInputStream This changes the program to encode in bytes rather than
+	 * characters.
+	 * 
 	 * @param fileName
 	 */
 	public HuffmanEncode(String fileName) {
-		
+
 	}
-	
+
 	/**
-	 * Reads the FileInputStream and counts the occurrence of every byte.
-	 * Fills the PriorityQueue with the nodes that you create out of the bytes and occurrences.
-	 * Builds the Huffman Tree
-	 * Traverses the Huffman Tree
+	 * Reads the FileInputStream and counts the occurrence of every byte. Fills
+	 * the PriorityQueue with the nodes that you create out of the bytes and
+	 * occurrences. Builds the Huffman Tree Traverses the Huffman Tree
 	 */
 	public void encodeByteStream() {
-		
-		// The Traversal method should store the following info into a HashMap<K, V> for every leaf node
-		// Bytes as K (key) of type Integer (don't use Byte because of signed problem)
+
+		// The Traversal method should store the following info into a
+		// HashMap<K, V> for every leaf node
+		// Bytes as K (key) of type Integer (don't use Byte because of signed
+		// problem)
 		// Huffman Code as V (value) of type String
+	}
+
+	/**
+	 * Create the compressed file
+	 * 
+	 * @param fileName
+	 */
+	public void writeToFile(String fileName) {
+		long numberOfBytes; // Number of bytes in original file.
+		// You cannot write long directly, you need to split that number into
+		// bytes. Requirement: The highest significant byte first
+		int numberOfSymbols; // Bytes found in the original file that got
+								// encoded for each symbol you write
+		byte symbolValue;
+		byte codeLength; // the length of the “01010111” codeString for this
+							// symbol
+		// byte(s) codeBits // for each ‘0’ a bit 0 and for each ‘1’ a bit 1
+		// set. The # of codeBits is determined by the codeLength (<=8 one byte,
+		// >8 <=16 two bytes
+		// etc.)
+	}
+
+	/**
+	 * A possible algorithm to fill up a byte bit by bit. When you call this
+	 * method you need to keep track of how many bits are already filled in the
+	 * first argument that you call that method with and make sure that the
+	 * second argument’s length will not go over the 8 bits (hint: use
+	 * substrings).
+	 * 
+	 * @param byteContainer
+	 * @param code
+	 * @return
+	 */
+	private int pushCharCodeIntoContainer(int byteContainer, String code) {
+
+		int newContainer = byteContainer;
+
+		for (int i = 0; i <= code.length() - 1; i++) {
+			newContainer *= 2;
+			if ('1' == code.charAt(i)) {
+				newContainer += 1;
+			}
+		}
+		return newContainer;
 	}
 
 	public void encode() throws IOException {

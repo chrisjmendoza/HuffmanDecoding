@@ -4,6 +4,10 @@ Assignment 7
 
 Huffman File
 
+Assignment 7
+
+Huffman File
+
 Now that you have finished Project #5 (Huffman Coding) on page 1092, you are ready to extend this project in a way that you write the encoded information to a file and read the encoded information from a file and decode it.
 
 Here are some details and interface requirements as discussed in class:
@@ -22,11 +26,11 @@ public void writeToFile(String fileName)
 
  
 
-The former does the following:
+The first 2 do the following:
 
-Reads the filename and creates a File Object which will be used in a FileInputStream.  
-This enables your program from encoding characters to bytes. You will notice that a newline when you read “foxtext.txt” as  FileInputStream is coded in 2 bytes (carriage return and newline). As a result the Huffman Tree will look different from the one that you create when you treat this file as a text file.
-The latter does the following:
+public HuffmanEncode (String fileName) reads the filename and creates a File Object which will be used in a FileInputStream.  
+public void encodeByteStream() enables your program from encoding characters to bytes. You will notice that a newline when you read “foxtext.txt” as  FileInputStream is coded in 2 bytes (carriage return and newline). As a result the Huffman Tree will look different from the one that you create when you treat this file as a text file.
+The public void writeToFile(String fileName) does the following:
 
 Reads the FileInputStream and counts the occurrence of every byte.
 Fills the Priority Queue with the nodes that you create out of the bytes and occurrences.
@@ -41,27 +45,21 @@ With this preparation you will create the compressed file when writeToFile(Strin
 
 In order for the file to be decoded you need to write the coding information (Huffman Tree) to the compressed file as well. Here is the required approach (because I want to make sure that every student can decode a File that another student coded):
 
-File Header Info:
+File Header Info (You write this information directly byte by byte during creation to file, you do not need to create a data structure for this):
 
 long numberOfBytes;  // Number of bytes in original file. 
-
-// You cannot write long directly, you need to split that number into
-
-// bytes. Requirement: The highest significant byte first
-
-int numberOfSymbols;  // Bytes found in the original file that got encoded
+                                          // You cannot write long directly, you need to split that number into
+                                         // bytes. Requirement: The highest significant byte first, continue with less significant bytes, least significant byte last
+int numberOfSymbols;  // # of different Bytes(Symbols) found in the original file that got encoded
+                                          // You cannot write int directly, you need to split that number into
+                                         // bytes. Requirement: The highest significant byte first, continue with less significant bytes, least significant byte last
 for each symbol you write
-
 byte symbolValue;
-
 byte codeLength; // the length of the “01010111” codeString for this symbol
-
 byte(s) codeBits // for each ‘0’ a bit 0 and for each ‘1’ a bit 1 set. The # of codeBits
-
-// is determined by the codeLength (<=8 one byte, >8 <=16 two bytes etc.)
+                                // determins the codeLength (<=8 one byte, >8 <=16 two bytes etc.)
 
 After this header the bit stream of the encoded bytes follow. Here is an example:
-
 Assuming you have the following mapping (I use chars as symbols for simplicity)
 'T' ‘110100’, 'h' ‘10111’, 'e' ‘1001’, ' ' ‘111’,  'b' ‘011100’ the foxtext.hzip file would start right after the above described File Header Info with the following 3 bytes (Each block represents a byte in the file):
 

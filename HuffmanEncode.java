@@ -45,20 +45,45 @@ public class HuffmanEncode {
 	 * Create the compressed file
 	 * 
 	 * @param fileName
+	 * @throws IOException 
 	 */
-	public void writeToFile(String fileName) {
+	public void writeToFile(String fileName) throws IOException {
 		long numberOfBytes; // Number of bytes in original file.
 		// You cannot write long directly, you need to split that number into
 		// bytes. Requirement: The highest significant byte first
 		int numberOfSymbols; // Bytes found in the original file that got
 								// encoded for each symbol you write
 		byte symbolValue;
-		byte codeLength; // the length of the “01010111” codeString for this
+		byte codeLength; // the length of the "01010111" codeString for this
 							// symbol
-		// byte(s) codeBits // for each ‘0’ a bit 0 and for each ‘1’ a bit 1
+		// byte(s) codeBits // for each '0' a bit 0 and for each '1' a bit 1
 		// set. The # of codeBits is determined by the codeLength (<=8 one byte,
 		// >8 <=16 two bytes
 		// etc.)
+		
+		// Create a type FileInputStream from the passed name of the file
+		FileInputStream file = new FileInputStream(fileName);
+		
+		// Create the HashMap of the bytes of each character and their occurrences
+		HashMap<byte[], Integer> valFrq = new HashMap<byte[], Integer>();
+		int c;
+		// While file has characters to read, convert the character into a byte[] and add to the HashMap while adding to the occurrences
+		while((c = file.read()) != -1) {
+			valFrq.putIfAbsent(byte[] c, 0);
+			valFrq.replace(byte[] c, valFrq.get(byte[] c) + 1);
+		}
+		// Close the file reading
+		file.close();
+		
+		// Push all the HashMap values into a priority Queue as new Character Nodes (CharNode)
+		PriorityQueue<CharNode> queue = new PriorityQueue<CharNode>();
+		
+		// For each loop, every item in the HashMap, push into the priority Queue
+		for (Map.Entry<byte[], Integer> item : valFrq.entrySet()) {
+			
+		}
+		
+		
 	}
 
 	/**

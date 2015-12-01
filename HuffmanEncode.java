@@ -48,7 +48,7 @@ public class HuffmanEncode {
 		int c;
 		while ((c = byteOutput.read()) != -1) {
 			byteMap.putIfAbsent(Integer.parseInt(Integer.toBinaryString(c)), 0);
-			byteMap.replace(Integer.parseInt(Integer.toBinaryString(c)), byteMap.get(Integer.parseInt(Integer.toBinaryString(c))) + 1);
+			byteMap.replace(Integer.parseInt((c)), (c))) + 1);
 			System.out.println("(" + Integer.toBinaryString(c) + ", " + byteMap.get(Integer.parseInt(Integer.toBinaryString(c))) + ")");
 		}
 		byteOutput.close();

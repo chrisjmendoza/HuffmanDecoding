@@ -5,10 +5,11 @@ public class HuffmanEncode {
 
 	CharNode overallRoot;
 	FileReader output;
+	FileInputStream byteOutput;
 
 	/**
 	 * @param object
-	 *            The Text file to read
+	 *            The text file to read
 	 * @throws IOException
 	 *             Throws exception if it's not readable
 	 */
@@ -20,141 +21,69 @@ public class HuffmanEncode {
 	 * Reads the filename and creates a File Object which will be used in a
 	 * FileInputStream. This changes the program to encode in bytes rather than
 	 * characters.
-	 * 
+	 *
 	 * @param fileName
+	 * @throws FileNotFoundException
 	 */
-	public HuffmanEncode(String fileName) {
-
+	public HuffmanEncode(String fileName) throws FileNotFoundException {
+		byteOutput = new FileInputStream(fileName);
 	}
 
 	/**
 	 * Reads the FileInputStream and counts the occurrence of every byte. Fills
-	 * the PriorityQueue with the nodes that you create out of the bytes and
-	 * occurrences. Builds the Huffman Tree and Traverses the Huffman Tree.
+	 * the PriorityQueue with the nodes that you create out of bytes and
+	 * occurrences. Builds the Huffman Tree and Traverses the tree.
+	 *
+	 * @throws IOException
 	 */
-	public void encodeByteStream() {
-
-		// The Traversal method should store the following info into a
+	public void encodeByteStream() throws IOException {
+		// The traversal method should store the following info into a
 		// HashMap<K, V> for every leaf node
-		// Bytes as K (key) of type Integer (don't use Byte because of signed
+		// Bytes as K (key) of type Integer (don't use Byte because of a signed
 		// problem)
-		// Huffman Code as V (value) of type String
-	}
+		// Huffman code as V (value) of type String
 
-	/**
-	 * Create the compressed file
-	 * 
-	 * @param fileName
-	 * @throws IOException 
-	 */
-	public void writeToFile(String fileName) throws IOException {
-		long numberOfBytes; // Number of bytes in original file.
-		// You cannot write long directly, you need to split that number into
-		// bytes. Requirement: The highest significant byte first
-		int numberOfSymbols; // Bytes found in the original file that got
-								// encoded for each symbol you write
-		byte symbolValue;
-		byte codeLength; // the length of the "01010111" codeString for this
-							// symbol
-		// byte(s) codeBits // for each '0' a bit 0 and for each '1' a bit 1
-		// set. The # of codeBits is determined by the codeLength (<=8 one byte,
-		// >8 <=16 two bytes
-		// etc.)
-		
-		// Create a type FileInputStream from the passed name of the file
-		FileInputStream file = new FileInputStream(fileName);
-		
-		// Create the HashMap of the bytes of each character and their occurrences
-		HashMap<byte[], Integer> valFrq = new HashMap<byte[], Integer>();
+		// Generate the initial HashMap of integer bytes and integer occurrences
+		HashMap<Integer, Integer> byteMap = new HashMap<Integer, Integer>();
 		int c;
-		// While file has characters to read, convert the character into a byte[] and add to the HashMap while adding to the occurrences
-		while((c = file.read()) != -1) {
-			valFrq.putIfAbsent(byte[] c, 0);
-			valFrq.replace(byte[] c, valFrq.get(byte[] c) + 1);
+		while ((c = byteOutput.read()) != -1) {
+			byteMap.putIfAbsent(Integer.parseInt(Integer.toBinaryString(c)), 0);
+			byteMap.replace(Integer.parseInt(Integer.toBinaryString(c)), byteMap.get(Integer.parseInt(Integer.toBinaryString(c))) + 1);
+			System.out.println("(" + Integer.toBinaryString(c) + ", " + byteMap.get(Integer.parseInt(Integer.toBinaryString(c))) + ")");
 		}
-		// Close the file reading
-		file.close();
-		
-		// Push all the HashMap values into a priority Queue as new Character Nodes (CharNode)
-		PriorityQueue<CharNode> queue = new PriorityQueue<CharNode>();
-		
-		// For each loop, every item in the HashMap, push into the priority Queue
-		for (Map.Entry<byte[], Integer> item : valFrq.entrySet()) {
-			
-		}
-		
-		
-	}
+		byteOutput.close();
 
-	/**
-	 * A possible algorithm to fill up a byte bit by bit. When you call this
-	 * method you need to keep track of how many bits are already filled in the
-	 * first argument that you call that method with and make sure that the
-	 * second argument’s length will not go over the 8 bits (hint: use
-	 * substrings).
-	 * 
-	 * @param byteContainer
-	 * @param code
-	 * @return
-	 */
-	private int pushCharCodeIntoContainer(int byteContainer, String code) {
-
-		int newContainer = byteContainer;
-
-		for (int i = 0; i <= code.length() - 1; i++) {
-			newContainer *= 2;
-			if ('1' == code.charAt(i)) {
-				newContainer += 1;
-			}
-		}
-		return newContainer;
-	}
-
-	public void encode() throws IOException {
-		HashMap<Character, Integer> valFreq = new HashMap<Character, Integer>();
-		int c;
-		while ((c = output.read()) != -1) {
-			valFreq.putIfAbsent((char) c, 0);
-			valFreq.replace((char) c, valFreq.get((char) c) + 1);
-			// System.out.println(c + " " + valFreq.get((char) c));
-		}
-		output.close();
-
-		// Push them all into a priority queue as new Character Nodes (CharNode)
-		PriorityQueue<CharNode> queue = new PriorityQueue<CharNode>();
-		for (Map.Entry<Character, Integer> item : valFreq.entrySet()) {
-			queue.add(new CharNode(item.getKey(), null, null, item.getValue()));
+		// Push the HashMap values into a PriorityQueue as new character Nodes
+		// (CharNode)
+		PriorityQueue<CharNode> byteQueue = new PriorityQueue<CharNode>();
+		for (Map.Entry<Integer, Integer> item : byteMap.entrySet()) {
+			byteQueue.add(new CharNode(item.getKey(), null, null, item.getValue()));
 		}
 
-		// Go Highlander on the nodes in the priority queue by combining nodes
-		// until there is only 1 (that will be the HuffTree)
-		// THERE CAN BE ONLY ONE
-		while (queue.size() > 1) {
-			CharNode temp1 = queue.remove(); // pop out the two smallest value
-												// nodes
-			CharNode temp2 = queue.remove(); // and create a new node from the
-												// two
+		// Combine the Nodes in the queue until only 1 remains. That is the
+		// Huffman Tree
+		while (byteQueue.size() > 1) {
+			CharNode temp1 = byteQueue.remove(); // pop out the two smallest value
+			// nodes
+			CharNode temp2 = byteQueue.remove(); // and create a new node from the
+			// two
 			CharNode newNode = new CharNode(null, temp1, temp2, temp1.weight + temp2.weight);
 			temp1.parent = temp2.parent = newNode;
-			queue.add(newNode); // add it back into the pile
+			byteQueue.add(newNode); // add it back into the pile
 		}
 
-		// Kick the last remaining node (the generated HuffmanTree) out of the
-		// priorityQueue and save it as overallRoot
-		CharNode overallRoot = queue.remove();
+		// Remove the last remaining Node from the PriorityQueue and save it as overallRoot
+		CharNode overallRoot = byteQueue.remove();
 
-		// Create a character map and generate it's values from the HuffmanTree
-		Map<Character, String> charMap = genMap(overallRoot);
+		// Create a byte map and generate it's binary values from the HuffmanTree
+		Map<Integer, String> encodeMap = genMap(overallRoot);
 
-		// Output the values from the generated character map
-		// System.out.println(charMap.toString());
+		// Output the generated values from the generated byte map
+		System.out.println(encodeMap.toString());
+	}
 
-		// NEED TO PRINT OUT THE CHARACTER _ BINARYPATH _ # OF OCCURRENCES
+	public void writeToFile(String fileName) {
 
-		for (Character letter : charMap.keySet()) {
-			System.out.print(letter + " " + charMap.get(letter) + " " + valFreq.get(letter));
-			System.out.println();
-		}
 	}
 
 	/**
@@ -162,8 +91,8 @@ public class HuffmanEncode {
 	 *            The current node the method is generating from
 	 * @return The updated map with added character and binary path
 	 */
-	private Map<Character, String> genMap(CharNode root) {
-		Map<Character, String> map = new HashMap<Character, String>();
+	private Map<Integer, String> genMap(CharNode root) {
+		Map<Integer, String> map = new HashMap<Integer, String>();
 		traversal(map, root, "");
 		return map;
 	}
@@ -176,9 +105,9 @@ public class HuffmanEncode {
 	 * @param path
 	 *            The String for storing the binary path
 	 */
-	private void traversal(Map<Character, String> map, CharNode root, String path) {
+	private void traversal(Map<Integer, String> map, CharNode root, String path) {
 		if (root.isLeaf()) {
-			map.put(root.symbol, path);
+			map.put(root.symbolValue, path);
 		} else {
 			traversal(map, root.leftChild, path + '0');
 			traversal(map, root.rightChild, path + '1');
@@ -187,7 +116,7 @@ public class HuffmanEncode {
 
 	/**
 	 * @author Chris Mendoza
-	 * 
+	 *
 	 *         Custom Character Node class for building the Huffman Tree.
 	 *         Implements Comparable for the priorityQueue to use in
 	 *         HuffmanEncode
@@ -196,6 +125,7 @@ public class HuffmanEncode {
 	private class CharNode implements Comparable<CharNode> {
 
 		private Character symbol; // char to be encoded, empty if combined node
+		private Integer symbolValue;
 		CharNode leftChild;
 		CharNode rightChild;
 		CharNode parent;
@@ -203,7 +133,7 @@ public class HuffmanEncode {
 
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param symbol
 		 *            The character (a, b, c, etc)
 		 * @param leftChild
@@ -213,8 +143,15 @@ public class HuffmanEncode {
 		 * @param weight
 		 *            The number of occurrences of this character
 		 */
-		public CharNode(Character symbol, CharNode leftChild, CharNode rightChild, Integer weight) {
-			this.symbol = symbol;
+//		public CharNode(Character symbol, CharNode leftChild, CharNode rightChild, Integer weight) {
+//			this.symbol = symbol;
+//			this.leftChild = leftChild;
+//			this.rightChild = rightChild;
+//			this.weight = weight;
+//		}
+
+		public CharNode(Integer byteValue, CharNode leftChild, CharNode rightChild, Integer weight) {
+			this.symbolValue = byteValue;
 			this.leftChild = leftChild;
 			this.rightChild = rightChild;
 			this.weight = weight;

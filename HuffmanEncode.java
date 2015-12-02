@@ -4,6 +4,7 @@ import java.util.*;
 public class HuffmanEncode {
 
 	CharNode overallRoot;
+	File file;
 	FileReader output;
 	FileInputStream byteOutput;
 
@@ -27,6 +28,7 @@ public class HuffmanEncode {
 	 */
 	public HuffmanEncode(String fileName) throws FileNotFoundException {
 		byteOutput = new FileInputStream(fileName);
+		writeToFile(fileName);
 	}
 
 	/**
@@ -82,7 +84,34 @@ public class HuffmanEncode {
 		System.out.println(encodeMap.toString());
 	}
 
+	/**
+	 * Create the compressed file by writing the compressed values to a file
+	 * @param fileName the name of the original file
+     */
 	public void writeToFile(String fileName) {
+
+			// ------------------- START HEADER -------------------
+		// Write the file header info (FHI). The FHI will be written byte by byte during creation to file.
+		long numberOfBytes; // Number of bytes in the original file
+							// The long cannot be written directly. Split that number into bytes.
+							// REQUIREMENT: The highest significant byte first, continue with less
+							// significant bytes, least significant, etc.
+		int numberOfSymbols; // # of different Bytes(Symbols) found in the original file that got encoded.
+							// You cannot write to int directly. Split that number into bytes.
+							// REQUIREMENT: The highest significant byte first, continue with less
+							// significant bytes, least significant, for each symbol you write.
+		byte symbolValue;
+		byte coldeLength; // the length of the "01010111" codeString for this symbol
+		byte[] codebits; // for each '0', a bit 0 and for each '1', a bit 1 set. The # of codebits determines
+						// the codeLength (<= one byte, >8 <= 16 two bytes, etc
+		// ----------------------- END HEADER ----------------------
+
+		// After the header, the bit stream of the encoded bytes follow. Here is an example:
+		// Assuming you have the following mapping (I use chars as symbols for simplicity)
+		// 'T' '110100', 'h' '10111', 'e' '1001', ' ' '111', 'b' '011100' the foxtext.hzip file would start
+		// right after the above described File Header Info with the following 3 bytes (Each block represents
+		// a byte in the file):
+		// 11010010   11110011   11011100
 
 	}
 

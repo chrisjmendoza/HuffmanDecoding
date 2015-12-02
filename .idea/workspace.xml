@@ -35,13 +35,13 @@
       <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45924765">
-              <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+            <state vertical-scroll-proportion="-0.12695925">
+              <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1400#1418#0" expanded="true" />
-                <element signature="e#1898#1908#0" expanded="true" />
-                <element signature="e#3206#3223#0" expanded="true" />
+                <element signature="e#1786#1796#0" expanded="true" />
+                <element signature="e#3094#3111#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -535,12 +535,12 @@
       <created>1449010211681</created>
       <option name="number" value="Default" />
       <updated>1449010211681</updated>
-      <workItem from="1449010212885" duration="2206000" />
+      <workItem from="1449010212885" duration="2510000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2206000" />
+    <option name="totallyTimeSpent" value="2510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
@@ -588,13 +588,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45924765">
-          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+        <state vertical-scroll-proportion="-0.12695925">
+          <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1400#1418#0" expanded="true" />
-            <element signature="e#1898#1908#0" expanded="true" />
-            <element signature="e#3206#3223#0" expanded="true" />
+            <element signature="e#1786#1796#0" expanded="true" />
+            <element signature="e#3094#3111#0" expanded="true" />
           </folding>
         </state>
       </provider>

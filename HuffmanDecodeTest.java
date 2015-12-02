@@ -6,5 +6,6 @@ public class HuffmanDecodeTest {
 	public static void main(String[] args) throws IOException {
 		HuffmanEncode huff = new HuffmanEncode("foxtext.txt");
 		huff.encodeByteStream();
+		huff.writeToFile("foxtext.txt");
 	}
 }

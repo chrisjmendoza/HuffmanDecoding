@@ -47,9 +47,9 @@ public class HuffmanEncode {
 		HashMap<Integer, Integer> byteMap = new HashMap<Integer, Integer>();
 		int c;
 		while ((c = byteOutput.read()) != -1) {
-			byteMap.putIfAbsent((c)), 0);
-			byteMap.replace(Integer.parseInt((c)), (c))) + 1);
-			System.out.println("(" + (c) + ", " + (c))) + ")");
+			byteMap.putIfAbsent(c, 0);
+			byteMap.replace(c, (c) + 1);
+			System.out.println("(" + c + ", " + c + ")");
 		}
 		byteOutput.close();
 
@@ -131,10 +131,18 @@ public class HuffmanEncode {
 		CharNode parent;
 		Integer weight; // occurrence # of this char in the text
 
+
+//		public CharNode(Character symbol, CharNode leftChild, CharNode rightChild, Integer weight) {
+//			this.symbol = symbol;
+//			this.leftChild = leftChild;
+//			this.rightChild = rightChild;
+//			this.weight = weight;
+//		}
+
 		/**
 		 * Constructor
 		 *
-		 * @param symbol
+		 * @param byteValue
 		 *            The character (a, b, c, etc)
 		 * @param leftChild
 		 *            The pointer to the left branch - NULL by default
@@ -143,13 +151,6 @@ public class HuffmanEncode {
 		 * @param weight
 		 *            The number of occurrences of this character
 		 */
-//		public CharNode(Character symbol, CharNode leftChild, CharNode rightChild, Integer weight) {
-//			this.symbol = symbol;
-//			this.leftChild = leftChild;
-//			this.rightChild = rightChild;
-//			this.weight = weight;
-//		}
-
 		public CharNode(Integer byteValue, CharNode leftChild, CharNode rightChild, Integer weight) {
 			this.symbolValue = byteValue;
 			this.leftChild = leftChild;

@@ -95,7 +95,6 @@ public class HuffmanEncode {
      */
 	public void writeToFile(String fileName) throws IOException {
 
-			// ------------------- START HEADER -------------------
 		// Write the file header info (FHI). The FHI will be written byte by byte during creation to file.
 		long numberOfBytes = 0; // Number of bytes in the original file
 							// The long cannot be written directly. Split that number into bytes.
@@ -111,6 +110,11 @@ public class HuffmanEncode {
 		byte coldLength; // the length of the "01010111" codeString for this symbol
 		//byte(s) codebits; // for each '0', a bit 0 and for each '1', a bit 1 set. The # of codebits determines
 						// the codeLength (<= one byte, >8 <= 16 two bytes, etc
+
+        // ----------- START FILE OUTPUT ------------------------------------------
+        // ------------------- START HEADER ---------------------------------------
+
+        FileOutputStream outFile = new FileOutputStream(fileName);
 
         // ----------- START CALCULATING # OF BYTES IN ORIGINAL FILE --------------
         byte[] chunks = null;
@@ -138,7 +142,10 @@ public class HuffmanEncode {
 		for (byte b : result) {
 			System.out.println(b);
 		}
-		// ----------------------- END HEADER ----------------------
+
+        outFile.write(result);
+		// ----------------------- END HEADER ---------------------
+        // ----------- END FILE OUTPUT --------------------------------------------
 
 		// After the header, the bit stream of the encoded bytes follow. Here is an example:
 		// Assuming you have the following mapping (I use chars as symbols for simplicity)

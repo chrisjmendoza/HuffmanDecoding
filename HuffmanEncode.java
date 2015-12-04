@@ -138,23 +138,23 @@ public class HuffmanEncode {
 
         int shift = 7;
         char b = 0;
-
+        // For Each mapEntry in Map ENCODEMAP, change the byte value of char b and write it to the new file
         for ( Map.Entry<Integer, String> c : encodeMap.entrySet() ) {
 
-            String code = c.getValue();
+            String code = c.getValue(); // Get the Encoded Binary path of the current Map Entry
 
             for(int i = 0; i < code.length(); i++) {
                 if(shift < 0) {
-                    outFile.write(b);
-                    shift = 7;
-                    b = 0;
+                    outFile.write(b); // Write the modified char b to the output file
+                    shift = 7; // reset the shift to 7
+                    b = 0; // reset the char to 0
                 }
-                char d = code.charAt(i);
-                if(d == '1') {
-                    b = (char) (b + (1 << shift));
+                char d = code.charAt(i); // get the character at the current index of the string
+                if(d == '1') { // if the 'bit' value is a 1,
+                    b = (char) (b + (1 << shift)); // modify the b value by bit shifting in the 1
                 }
-                shift --;
-            }
+                shift --; // increment down
+            } // END OF FOR EACH LOOP
         }
 
 

@@ -121,23 +121,22 @@ public class HuffmanEncode {
 
         // ------------------- TEST OF BYTEBUFFER FOR GETTING BYTES -------------------
 
+//        long testLong = 2000;
+//        ByteBuffer bz = ByteBuffer.allocate(8);
+//        bz.putLong(testLong);
+//
+//		byte[] result = bz.array();
+//
+//        result.toString();
+//
+//		for (byte b : result) {
+//            if (b < 0) {
+//                b = (byte) (b + 256);
+//            }
+//			System.out.println(b);
+//		}
 
-
-        /*ByteBuffer bz = ByteBuffer.allocate(8);
-        bz.putLong(numberOfBytes);
-
-		byte[] result = bz.array();
-
-        result.toString();
-
-		for (byte b : result) {
-            if (b < 0) {
-                b = (byte) (b + 256);
-            }
-			System.out.println(b);
-		}
-
-        outFile.write(result);*/
+        // outFile.write(result);
         // -------------- END OF BYTEBUFFER TEST ------------------------------------
 
         // The first part of the header needs to be a byte representation of a long file
@@ -161,6 +160,7 @@ public class HuffmanEncode {
         for (Map.Entry<Integer, String> c : encodeMap.entrySet()) {
 
             String code = c.getValue(); // Get the Encoded Binary path of the current Map Entry
+            System.out.println("The String output at this key: " + code);
 
             // Store the character symbolValue in byte and write to output
             int key = c.getKey();
@@ -168,9 +168,7 @@ public class HuffmanEncode {
             System.out.println("The byte value of symbolValue: " + symbolValue);
 
             // Store the character length
-            ByteBuffer bc = ByteBuffer.allocate(8);
-            bc.putInt(code.length());
-            codeLength = bc.get(7);
+            codeLength  = (byte) code.length();
             System.out.println("Byte Code Length: " + codeLength);
             outFile.write(codeLength);
 

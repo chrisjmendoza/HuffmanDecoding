@@ -146,9 +146,9 @@ public class HuffmanEncode {
 
         // Now write the byte information of the numberOfSymbols to the file
         byte bNumOfSym = (byte) numberOfSymbols;
-        System.out.println("The Number Of Symbols Signed Byte Value: " + bNumOfSym);
-        int b2 = bNumOfSym & 0xFF;
-        System.out.println("The corrected Number of Symbols Byte Value: " + b2);
+//        System.out.println("The Number Of Symbols Signed Byte Value: " + bNumOfSym);
+//        int b2 = bNumOfSym & 0xFF;
+//        System.out.println("The corrected Number of Symbols Byte Value: " + b2);
 
         outFile.write(bNumOfSym);
 
@@ -156,28 +156,25 @@ public class HuffmanEncode {
         // --- The order of insertion is the symbol value, it's length, and it's encoding ---
         int shift = 7;
         char b = 0;
+
         // For Each mapEntry in Map ENCODEMAP, change the byte value of char b and write it to the new file
         for (Map.Entry<Integer, String> c : encodeMap.entrySet()) {
 
             String code = c.getValue(); // Get the Encoded Binary path of the current Map Entry
 
-            //byte[] bCodeLength = ByteBuffer.allocate(2).putInt(code.length()).array();
-            //byte byteCodeLength = bCodeLength[0];
+            // Store the character symbolValue in byte and write to output
+            int key = c.getKey();
+            symbolValue = (byte) key;
+            System.out.println("The byte value of symbolValue: " + symbolValue);
 
-            byte[] bytes = ByteBuffer.allocate(4).putInt(c.getKey()).array();
-
-            ByteBuffer bs = ByteBuffer.allocate(8);
-            bs.putInt(c.getKey());
-            byte bCodeSymbol = bs.get(7);
-            System.out.println("Byte Code Symbol Value: " + bCodeSymbol);
-            outFile.write(bCodeSymbol);
-
+            // Store the character length
             ByteBuffer bc = ByteBuffer.allocate(8);
             bc.putInt(code.length());
-            byte bCodeLength = bc.get(7);
-            System.out.println("Byte Code Length: " + bCodeLength);
-            outFile.write(bCodeLength);
+            codeLength = bc.get(7);
+            System.out.println("Byte Code Length: " + codeLength);
+            outFile.write(codeLength);
 
+            // The for loop to write the binary of each binary path
             for (int i = 0; i < code.length(); i++) {
                 if (shift < 0) {
                     outFile.write(b); // Write the modified char b to the output file

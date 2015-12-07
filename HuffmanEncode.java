@@ -57,7 +57,7 @@ public class HuffmanEncode {
         while ((c = byteOutput.read()) != -1) {
             byteMap.putIfAbsent(c, 0);
             byteMap.replace(c, byteMap.get(c) + 1);
-            System.out.println("(" + c + ", " + byteMap.get(c) + ")");
+            //System.out.println("(" + c + ", " + byteMap.get(c) + ")");
         }
         byteOutput.close();
 

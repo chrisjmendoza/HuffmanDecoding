@@ -1,3 +1,7 @@
 /HuffmanDecode.class
 /HuffmanEncode$CharNode.class
 /HuffmanEncode.class
+*.xml
+*.iml
+*.txt
+*.hzip

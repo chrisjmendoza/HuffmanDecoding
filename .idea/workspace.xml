@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="286c9938-ce62-4ad4-b098-946f2f951102" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanDecodeTest.java" afterPath="$PROJECT_DIR$/HuffmanDecodeTest.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/HuffmanDecoding/20000.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/HuffmanDecoding/2city11.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/HuffmanDecoding/warandpeace.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HuffmanDecoding/HuffmanDecodeTest.class" afterPath="$PROJECT_DIR$/out/production/HuffmanDecoding/HuffmanDecodeTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="HuffmanDecoding.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,20 +39,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.7542662">
               <caret line="208" column="75" selection-start-line="208" selection-start-column="75" selection-end-line="208" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HuffmanDecodeTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HuffmanDecodeTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HuffmanDecodeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.048350397">
+            <state vertical-scroll-proportion="0.0">
               <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
               <folding />
             </state>
@@ -602,15 +606,15 @@
       <workItem from="1449097744885" duration="6206000" />
       <workItem from="1449120060074" duration="1000" />
       <workItem from="1449174619546" duration="25574000" />
-      <workItem from="1449472200621" duration="1610000" />
+      <workItem from="1449472200621" duration="1849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40630000" />
+    <option name="totallyTimeSpent" value="40869000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1088" y="-300" width="1096" height="1896" extended-state="7" />
+    <frame x="-1088" y="-300" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -880,18 +884,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
+    <entry file="file://$PROJECT_DIR$/HuffmanDecodeTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="208" column="75" selection-start-line="208" selection-start-column="75" selection-end-line="208" selection-end-column="75" />
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HuffmanDecodeTest.java">
+    <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.048350397">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.7542662">
+          <caret line="208" column="75" selection-start-line="208" selection-start-column="75" selection-end-line="208" selection-end-column="75" />
           <folding />
         </state>
       </provider>

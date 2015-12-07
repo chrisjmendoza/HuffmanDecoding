@@ -4,10 +4,6 @@ Assignment 7
 
 Huffman File
 
-Assignment 7
-
-Huffman File
-
 Now that you have finished Project #5 (Huffman Coding) on page 1092, you are ready to extend this project in a way that you write the encoded information to a file and read the encoded information from a file and decode it.
 
 Here are some details and interface requirements as discussed in class:
@@ -30,7 +26,7 @@ The first 2 do the following:
 
 public HuffmanEncode (String fileName) reads the filename and creates a File Object which will be used in a FileInputStream.  
 public void encodeByteStream() enables your program from encoding characters to bytes. You will notice that a newline when you read “foxtext.txt” as  FileInputStream is coded in 2 bytes (carriage return and newline). As a result the Huffman Tree will look different from the one that you create when you treat this file as a text file.
-The public void writeToFile(String fileName) does the following:
+The public void encodeByteStream()  does the following:
 
 Reads the FileInputStream and counts the occurrence of every byte.
 Fills the Priority Queue with the nodes that you create out of the bytes and occurrences.

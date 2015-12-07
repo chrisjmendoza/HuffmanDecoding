@@ -11,7 +11,7 @@ public class HuffmanEncode {
     FileInputStream byteOutput;
     FileInputStream readOutput;
     private int leafCount;
-    private int byteCounter;
+    private int bitCounter;
     private int charCount;
     String thisFile;
     Map<Integer, String> encodeMap;
@@ -156,7 +156,7 @@ public class HuffmanEncode {
 
         // ------------------- WRITE ENCODED BYTES TO OUTPUT -----------------------------
         // --- The order of insertion is the symbol value, it's length, and it's encoding ---
-        int shift = 7;
+        int shift = 15;
         char b = 0;
 
         // Open the original file, read the contents and encode the file's contents
@@ -185,7 +185,7 @@ public class HuffmanEncode {
                 for (int i = 0; i < code.length(); i++) {
                     if (shift < 0) {
                         outFile.write(b); // Write the modified char b to the output file
-                        shift = 7; // reset the shift to 7
+                        shift = 15; // reset the shift to 7
                         b = 0; // reset the char to 0
                     }
                     char d = code.charAt(i); // get the character at the current index of the string
@@ -198,7 +198,7 @@ public class HuffmanEncode {
                     System.out.println("Byte Code Length: " + codeLength);
                     System.out.println("The String output at this key: " + code);
                     System.out.println();
-                    byteCounter += codeLength;
+                    bitCounter += codeLength;
 
                 } // END OF FOR LOOP
 
@@ -206,7 +206,7 @@ public class HuffmanEncode {
 
         outFile.close();
         System.out.println("The number of bytes in the original file: " + numberOfBytes);
-        System.out.println("The bytes from the encoding: " + byteCounter);
+        System.out.println("The bytes from the encoding: " + bitCounter / 8);
         System.out.println("The number of characters encoded: " + charCount);
 
 

@@ -6,3 +6,4 @@
 *.txt
 *.hzip
 *.xml
+.idea/workspace.xml

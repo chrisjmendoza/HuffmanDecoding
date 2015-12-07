@@ -232,7 +232,7 @@ public class HuffmanEncode {
      * Converts long to byte in bitwise operations
      *
      * @param l the long to convert
-     * @return the byte conversion of the long value
+     * @return the byte[] conversion of the long value
      */
     public static byte[] longToBytes(long l) {
         byte[] result = new byte[8];

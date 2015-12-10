@@ -122,26 +122,6 @@ public class HuffmanEncode {
 
         System.out.println("The number of bytes in the original file: " + numberOfBytes + "\n");
 
-        // ------------------- TEST OF BYTEBUFFER FOR GETTING BYTES -------------------
-
-//        long testLong = 2000;
-//        ByteBuffer bz = ByteBuffer.allocate(8);
-//        bz.putLong(testLong);
-//
-//		byte[] result = bz.array();
-//
-//        result.toString();
-//
-//		for (byte b : result) {
-//            if (b < 0) {
-//                b = (byte) (b + 256);
-//            }
-//			System.out.println(b);
-//		}
-
-        // outFile.write(result);
-        // -------------- END OF BYTEBUFFER TEST ------------------------------------
-
         // The first part of the header needs to be a byte representation of a long file
         // Do a manual conversion of a long into a byte representation.
         outFile.write(longToBytes(numberOfBytes));
@@ -155,7 +135,7 @@ public class HuffmanEncode {
         outFile.write(bNumOfSym);
 
         // -------------- WRITE ENCODED CHARACTER VALUES --------------------------
-        for(Map.Entry<Integer, String> item: encodeMap.entrySet()) {
+        for (Map.Entry<Integer, String> item : encodeMap.entrySet()) {
 
             // output the byte converted integer value of the symbol value
             outFile.write(intToByteArray(item.getKey()));
@@ -169,7 +149,7 @@ public class HuffmanEncode {
             int shift = 15;
             char b = 0;
 
-            for(int i = 0; i < code.length(); i++) {
+            for (int i = 0; i < code.length(); i++) {
                 if (shift < 0) {
                     outFile.write(b);
                     shift = 15;
@@ -192,45 +172,45 @@ public class HuffmanEncode {
         readOutput = new FileInputStream(thisFile);
         int r;
 
-            while ((r = readOutput.read()) != -1) {
+        while ((r = readOutput.read()) != -1) {
 
-                charCount++;
+            charCount++;
 
-                // Read the current byte, and determine it's encoding from the ENCODEMAP
-                // and write the output file based on the current symbol
+            // Read the current byte, and determine it's encoding from the ENCODEMAP
+            // and write the output file based on the current symbol
 
-                String code = encodeMap.get(r);
-                codeLength = (byte) code.length();
+            String code = encodeMap.get(r);
+            codeLength = (byte) code.length();
 
-                // OUTPUT THE SYMBOL BYTE VALUE
-                outFile.write(intToByteArray(r)); // can only handle small character values. Needs to be updated
-                                // to correct for signed bytes
+            // OUTPUT THE SYMBOL BYTE VALUE
+            outFile.write(intToByteArray(r)); // can only handle small character values. Needs to be updated
+            // to correct for signed bytes
 
-                // OUTPUT THE SYMBOL LENGTH
-                outFile.write(intToByteArray(encodeMap.get(r).length()));
+            // OUTPUT THE SYMBOL LENGTH
+            outFile.write(intToByteArray(encodeMap.get(r).length()));
 
-                // OUTPUT THE ENCODED VALUE
-                // The for loop to write the binary of each binary path
-                for (int i = 0; i < code.length(); i++) {
-                    if (shift < 0) {
-                        outFile.write(b); // Write the modified char b to the output file
-                        shift = 15; // reset the shift to 7
-                        b = 0; // reset the char to 0
-                    }
-                    char d = code.charAt(i); // get the character at the current index of the string
-                    if (d == '1') { // if the 'bit' value is a 1,
-                        b = (char) (b + (1 << shift)); // modify the b value by bit shifting in the 1
-                    }
-                    shift--; // increment down
+            // OUTPUT THE ENCODED VALUE
+            // The for loop to write the binary of each binary path
+            for (int i = 0; i < code.length(); i++) {
+                if (shift < 0) {
+                    outFile.write(b); // Write the modified char b to the output file
+                    shift = 15; // reset the shift to 7
+                    b = 0; // reset the char to 0
+                }
+                char d = code.charAt(i); // get the character at the current index of the string
+                if (d == '1') { // if the 'bit' value is a 1,
+                    b = (char) (b + (1 << shift)); // modify the b value by bit shifting in the 1
+                }
+                shift--; // increment down
 
-                    System.out.println("The byte value of symbolValue: " + r);
-                    System.out.println("Byte Code Length: " + codeLength);
-                    System.out.println("The String output at this key: " + code);
-                    System.out.println();
-                    bitCounter += codeLength;
+                System.out.println("The byte value of symbolValue: " + r);
+                System.out.println("Byte Code Length: " + codeLength);
+                System.out.println("The String output at this key: " + code);
+                System.out.println();
+                bitCounter += codeLength;
 
-                } // END OF FOR LOOP
-            } // END OF WHILE LOOP
+            } // END OF FOR LOOP
+        } // END OF WHILE LOOP
 
         outFile.close();
         System.out.println("The number of bytes in the original file: " + numberOfBytes);
@@ -249,7 +229,7 @@ public class HuffmanEncode {
         // 11010010   11110011   11011100
 
 		/*
-		Possible code
+        Possible code
 
 		 */
 
@@ -291,12 +271,12 @@ public class HuffmanEncode {
 
     /**
      * Converts int into a byte array
+     *
      * @param a the int value to convert
      * @return the byte array
      */
-    public static byte[] intToByteArray(int a)
-    {
-        return new byte[] {
+    public static byte[] intToByteArray(int a) {
+        return new byte[]{
                 (byte) ((a >> 24) & 0xFF),
                 (byte) ((a >> 16) & 0xFF),
                 (byte) ((a >> 8) & 0xFF),

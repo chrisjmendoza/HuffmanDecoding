@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="286c9938-ce62-4ad4-b098-946f2f951102" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanDecode.java" afterPath="$PROJECT_DIR$/HuffmanDecode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanEncode.java" afterPath="$PROJECT_DIR$/HuffmanEncode.java" />
     </list>
     <ignored path="HuffmanDecoding.iws" />
@@ -47,8 +45,10 @@
                 <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state vertical-scroll-proportion="0.0">
-                      <caret line="299" column="42" selection-start-line="299" selection-start-column="42" selection-end-line="299" selection-end-column="42" />
-                      <folding />
+                      <caret line="279" column="42" selection-start-line="279" selection-start-column="42" selection-end-line="279" selection-end-column="42" />
+                      <folding>
+                        <marker date="1449731211436" expanded="true" signature="5180:5332" placeholder="//..." />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -70,8 +70,8 @@
               <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.83732057">
-                      <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+                    <state vertical-scroll-proportion="1.8133972">
+                      <caret line="163" column="34" selection-start-line="163" selection-start-column="34" selection-end-line="163" selection-end-column="34" />
                       <folding />
                     </state>
                   </provider>
@@ -86,8 +86,8 @@
           <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8647399">
-                  <caret line="232" column="0" selection-start-line="232" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.96069366">
+                  <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -660,12 +660,12 @@
       <workItem from="1449472200621" duration="1870000" />
       <workItem from="1449474135186" duration="414000" />
       <workItem from="1449560351107" duration="7441000" />
-      <workItem from="1449633201185" duration="4812000" />
+      <workItem from="1449633201185" duration="4969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53557000" />
+    <option name="totallyTimeSpent" value="53714000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1088" y="-300" width="1096" height="1896" extended-state="6" />
@@ -1044,8 +1044,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83732057">
-          <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.96069366">
+          <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
           <folding />
         </state>
       </provider>

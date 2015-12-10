@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="286c9938-ce62-4ad4-b098-946f2f951102" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanDecode.java" afterPath="$PROJECT_DIR$/HuffmanDecode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanDecodeTest.java" afterPath="$PROJECT_DIR$/HuffmanDecodeTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HuffmanEncode.java" afterPath="$PROJECT_DIR$/HuffmanEncode.java" />
     </list>
     <ignored path="HuffmanDecoding.iws" />
@@ -45,7 +43,7 @@
             <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="247" column="42" selection-start-line="247" selection-start-column="42" selection-end-line="247" selection-end-column="42" />
+                  <caret line="242" column="42" selection-start-line="242" selection-start-column="42" selection-end-line="242" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
@@ -68,8 +66,8 @@
           <file leaf-file-name="HuffmanEncode.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2531792">
-                  <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.6069364">
+                  <caret line="203" column="52" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
                   <folding />
                 </state>
               </provider>
@@ -92,9 +90,9 @@
       <list>
         <option value="$PROJECT_DIR$/output.hzip" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/HuffmanEncode.java" />
         <option value="$PROJECT_DIR$/HuffmanDecodeTest.java" />
         <option value="$PROJECT_DIR$/HuffmanDecode.java" />
+        <option value="$PROJECT_DIR$/HuffmanEncode.java" />
       </list>
     </option>
   </component>
@@ -642,12 +640,12 @@
       <workItem from="1449472200621" duration="1870000" />
       <workItem from="1449474135186" duration="414000" />
       <workItem from="1449560351107" duration="7441000" />
-      <workItem from="1449633201185" duration="7495000" />
+      <workItem from="1449633201185" duration="7726000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56240000" />
+    <option name="totallyTimeSpent" value="56471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1088" y="-300" width="1096" height="1896" extended-state="6" />
@@ -1026,8 +1024,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HuffmanEncode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2531792">
-          <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.6069364">
+          <caret line="203" column="52" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
           <folding />
         </state>
       </provider>

@@ -188,14 +188,9 @@ public class HuffmanEncode {
             // and write the output file based on the current symbol
 
             String code = encodeMap.get(r);
-            codeLength = (byte) code.length();
-
             // OUTPUT THE SYMBOL BYTE VALUE
             outFile.write(intToByteArray(r)); // can only handle small character values. Needs to be updated
             // to correct for signed bytes
-
-            // OUTPUT THE SYMBOL LENGTH
-            outFile.write(intToByteArray(encodeMap.get(r).length()));
 
             // OUTPUT THE ENCODED VALUE
             // The for loop to write the binary of each binary path
@@ -212,10 +207,10 @@ public class HuffmanEncode {
                 shift--; // increment down
 
                 System.out.println("The byte value of symbolValue: " + r);
-                System.out.println("Byte Code Length: " + codeLength);
+                System.out.println("Byte Code Length: " + code.length());
                 System.out.println("The String output at this key: " + code);
                 System.out.println();
-                bitCounter += codeLength;
+                bitCounter += code.length();
 
             } // END OF FOR LOOP
         } // END OF WHILE LOOP

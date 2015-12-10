@@ -1,6 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author Chris Mendoza
@@ -12,13 +13,15 @@ public class HuffmanDecode {
 	long numOfBytes;
 	int numOfSymbols;
 	int codeLength;
+	static Map<Integer, String> decodeMap;
 
 	/**
 	 * Constructor
 	 * @param encodedFileName
 	 */
-	public HuffmanDecode(String encodedFileName) throws FileNotFoundException {
+	public HuffmanDecode(String encodedFileName) throws IOException {
 		input = new FileInputStream(encodedFileName);
+		readFromFile("output.hzip");
 	}
 
 	/**
@@ -43,27 +46,29 @@ public class HuffmanDecode {
 		numOfSymbols = numSym[0];
 		System.out.println(numOfSymbols);
 
-		// Read through the encoded data and rebuild the huffman Tree
+		// Rebuild the Map with the encoded character values
+
+		// Read through the encoded data and rebuild the decoding map
 		for (int i = 0; i < numOfSymbols; i++) {
 
-			byte[] symbEncode;
-
-			byte[] symbol = new byte[1];
+			byte[] symbol = new byte[4];
+			byte[] codeLen = new byte[4];
 			input.read(symbol);
-			byte symbolValue = symbol[0];
+			int symVal = byteArrayToInt(symbol);
+			input.read(codeLen);
+			int codeLength = byteArrayToInt(codeLen);
 
-			byte[] length = new byte[1];
-			input.read(length);
-			byte bCodeLength = length[0];
-			codeLength = (int) bCodeLength;
 
-			symbEncode = new byte[codeLength];
+			byte[] symbEncode = new byte[codeLength];
 
 			for(int j = 0; j < codeLength; j++) {
 				symbEncode[j] = (byte) input.read();
 			}
 
+			String decodePath = new String();
 
+			Byte.parseByte(decodePath);
+			System.out.println(decodePath);
 
 		}
 

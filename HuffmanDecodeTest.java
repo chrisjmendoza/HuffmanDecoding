@@ -7,7 +7,6 @@ public class HuffmanDecodeTest {
 		HuffmanEncode huff = new HuffmanEncode("foxtext.txt");
 		huff.encodeByteStream();
 		HuffmanDecode dehuff = new HuffmanDecode("output.hzip");
-        dehuff.readFromFile("output.hzip");
 
 	}
 }

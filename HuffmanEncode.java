@@ -14,7 +14,7 @@ public class HuffmanEncode {
     private int bitCounter;
     private int charCount;
     String thisFile;
-    Map<Integer, String> encodeMap;
+    static Map<Integer, String> encodeMap;
 
     /**
      * @param object The text file to read
@@ -154,6 +154,35 @@ public class HuffmanEncode {
 
         outFile.write(bNumOfSym);
 
+        // -------------- WRITE ENCODED CHARACTER VALUES --------------------------
+        for(Map.Entry<Integer, String> item: encodeMap.entrySet()) {
+
+            // output the byte converted integer value of the symbol value
+            outFile.write(intToByteArray(item.getKey()));
+
+            // output the character length
+            outFile.write(item.getValue().length());
+
+            // output the String binary value of the encoded character
+            String code = item.getValue();
+
+            int shift = 15;
+            char b = 0;
+
+            for(int i = 0; i < code.length(); i++) {
+                if (shift < 0) {
+                    outFile.write(b);
+                    shift = 15;
+                    b = 0;
+                }
+                char d = code.charAt(i);
+                if (d == '1') {
+                    b = (char) (b + (1 << shift));
+                }
+                shift--;
+            } // END OF THE FOR LOOP
+        } // END OF THE WHILE LOOP
+
         // ------------------- WRITE ENCODED BYTES TO OUTPUT -----------------------------
         // --- The order of insertion is the symbol value, it's length, and it's encoding ---
         int shift = 15;
@@ -174,12 +203,11 @@ public class HuffmanEncode {
                 codeLength = (byte) code.length();
 
                 // OUTPUT THE SYMBOL BYTE VALUE
-                symbolValue = (byte) r;
-                outFile.write(symbolValue); // can only handle small character values. Needs to be updated
+                outFile.write(intToByteArray(r)); // can only handle small character values. Needs to be updated
                                 // to correct for signed bytes
 
                 // OUTPUT THE SYMBOL LENGTH
-                outFile.write(codeLength);
+                outFile.write(intToByteArray(encodeMap.get(r).length()));
 
                 // OUTPUT THE ENCODED VALUE
                 // The for loop to write the binary of each binary path
@@ -202,8 +230,7 @@ public class HuffmanEncode {
                     bitCounter += codeLength;
 
                 } // END OF FOR LOOP
-
-            }
+            } // END OF WHILE LOOP
 
         outFile.close();
         System.out.println("The number of bytes in the original file: " + numberOfBytes);
@@ -227,6 +254,40 @@ public class HuffmanEncode {
 		 */
 
     }
+
+//    /**
+//     * Helper method to convert strings to byte array
+//     * @param s
+//     * @return
+//     */
+//    public static void[] stringToByteArray(String s, int t) {
+//
+//        int shift = 15;
+//        char b = 0;
+//        String code = encodeMap.get(t);
+//
+//        // OUTPUT THE ENCODED VALUE
+//        // The for loop to write the binary of each binary path
+//        for (int i = 0; i < code.length(); i++) {
+//            if (shift < 0) {
+//                outFile.write(b); // Write the modified char b to the output file
+//                shift = 15; // reset the shift to 7
+//                b = 0; // reset the char to 0
+//            }
+//            char d = code.charAt(i); // get the character at the current index of the string
+//            if (d == '1') { // if the 'bit' value is a 1,
+//                b = (char) (b + (1 << shift)); // modify the b value by bit shifting in the 1
+//            }
+//            shift--; // increment down
+//
+//            System.out.println("The byte value of symbolValue: " + r);
+//            System.out.println("Byte Code Length: " + codeLength);
+//            System.out.println("The String output at this key: " + code);
+//            System.out.println();
+//            bitCounter += codeLength;
+//
+//        } // END OF FOR LOOP
+//    }
 
     /**
      * Converts int into a byte array

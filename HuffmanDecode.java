@@ -63,7 +63,7 @@ public class HuffmanDecode {
 				symbEncode[j] = (byte) input.read();
 			}
 
-			
+
 
 		}
 

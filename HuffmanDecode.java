@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class HuffmanDecode {
 	 */
 	public HuffmanDecode(String encodedFileName) throws IOException {
 		input = new FileInputStream(encodedFileName);
-		readFromFile("output.hzip");
+		readFromFile("output.txt");
 	}
 
 	/**
@@ -34,44 +35,57 @@ public class HuffmanDecode {
 	 */
 	public void readFromFile(String decodedFileName) throws IOException {
 
+		// -------------- START FILEOUTPUTSTREAM -----------------
+		FileOutputStream outFile = new FileOutputStream(decodedFileName);
+
 		// Pull out the long value for the number of bytes of the original file
 		byte[] firstLong = new byte[8];
 		input.read(firstLong);
 		numOfBytes = bytesToLong(firstLong);
-		System.out.println(numOfBytes);
+		System.out.println("The decoded number of bytes: " + numOfBytes);
 
 		// Pull out the integer value for the number of symbols from the original file
 		byte[] numSym = new byte[1];
 		input.read(numSym);
 		numOfSymbols = numSym[0];
-		System.out.println(numOfSymbols);
+		System.out.println("The decoded number of symbols: " + numOfSymbols);
 
 		// Rebuild the Map with the encoded character values
 
 		// Read through the encoded data and rebuild the decoding map
 		for (int i = 0; i < numOfSymbols; i++) {
 
-			byte[] symbol = new byte[4];
-			byte[] codeLen = new byte[4];
-			input.read(symbol);
-			int symVal = byteArrayToInt(symbol);
-			input.read(codeLen);
-			int codeLength = byteArrayToInt(codeLen);
+			// Read the integer symbol value from the byte stream
+			byte[] intByte = new byte[4];
+			input.read(intByte);
+			int symVal = byteArrayToInt(intByte);
+			System.out.println("The decoded symbol value: " + symVal);
 
+			// Read the length of the character encoding
+			input.read(intByte);
+			int codeLength = byteArrayToInt(intByte);
+			System.out.println("The decoded codeLength: " + codeLength);
 
-			byte[] symbEncode = new byte[codeLength];
+			// Build the binary path string from the header
+			byte[] symbolEncode = new byte[codeLength];
 
+			// Read the bytes of the given code length from the stream
 			for(int j = 0; j < codeLength; j++) {
-				symbEncode[j] = (byte) input.read();
+				symbolEncode[j] = (byte) input.read();
 			}
 
-			String decodePath = new String();
+			// Create a string to store the binary path
+			String decodePath = "";
 
-			Byte.parseByte(decodePath);
-			System.out.println(decodePath);
+			for(byte b : symbolEncode) {
+				char d = (char) b;
+				decodePath += d;
+			}
+			decodeMap.put(symVal, decodePath);
+			System.out.println("The symbol value: " + symVal + " and the binary path: " + decodePath);
 
 		}
-
+		System.out.println(decodeMap);
 		input.close();
 	}
 

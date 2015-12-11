@@ -109,10 +109,10 @@ public class HuffmanEncode {
         // REQUIREMENT: The highest significant byte first, continue with less
         // significant bytes, least significant, for each symbol you write.
 
-        System.out.println("\nNumber of Symbols: " + numberOfSymbols + "\n");
+        // System.out.println("\nNumber of Symbols: " + numberOfSymbols + "\n");
         byte symbolValue;
         byte codeLength; // the length of the "01010111" codeString for this symbol
-        //byte(s) codebits; // for each '0', a bit 0 and for each '1', a bit 1 set. The # of codebits determines
+        byte[] codebits; // for each '0', a bit 0 and for each '1', a bit 1 set. The # of codebits determines
         // the codeLength (<= one byte, >8 <= 16 two bytes, etc
 
         // ----------- START FILE OUTPUT ------------------------------------------
@@ -120,7 +120,7 @@ public class HuffmanEncode {
 
         FileOutputStream outFile = new FileOutputStream(fileName); // open a new output stream
 
-        System.out.println("The number of bytes in the original file: " + numberOfBytes + "\n");
+        // System.out.println("The number of bytes in the original file: " + numberOfBytes + "\n");
 
         // The first part of the header needs to be a byte representation of a long file
         // Do a manual conversion of a long into a byte representation.
@@ -141,12 +141,16 @@ public class HuffmanEncode {
             outFile.write(intToByteArray(item.getKey()));
 
             // output the character length
-            outFile.write(item.getValue().length());
+            outFile.write(intToByteArray(item.getValue().length()));
 
             // output the String binary value of the encoded character
             String code = item.getValue();
 
-            int shift = 15;
+            for(int i = 0; i < code.length(); i++) {
+                outFile.write(code.charAt(i));
+            }
+
+            /*int shift = 15;
             char b = 0;
 
             for (int i = 0; i < code.length(); i++) {
@@ -160,7 +164,7 @@ public class HuffmanEncode {
                     b = (char) (b + (1 << shift));
                 }
                 shift--;
-            } // END OF THE FOR LOOP
+            } // END OF THE FOR LOOP*/
         } // END OF THE WHILE LOOP
 
         // ----------------------- END HEADER -----------------------------
@@ -194,7 +198,11 @@ public class HuffmanEncode {
 
             // OUTPUT THE ENCODED VALUE
             // The for loop to write the binary of each binary path
-            for (int i = 0; i < code.length(); i++) {
+            for(int i = 0; i < code.length(); i++) {
+                outFile.write(code.charAt(i));
+            }
+
+            /*for (int i = 0; i < code.length(); i++) {
                 if (shift < 0) {
                     outFile.write(b); // Write the modified char b to the output file
                     shift = 15; // reset the shift to 7
@@ -205,30 +213,22 @@ public class HuffmanEncode {
                     b = (char) (b + (1 << shift)); // modify the b value by bit shifting in the 1
                 }
                 shift--; // increment down
-
-                System.out.println("The byte value of symbolValue: " + r);
-                System.out.println("Byte Code Length: " + code.length());
-                System.out.println("The String output at this key: " + code);
-                System.out.println();
+*/
+//                System.out.println("The byte value of symbolValue: " + r);
+//                System.out.println("Byte Code Length: " + code.length());
+//                System.out.println("The String output at this key: " + code);
+//                System.out.println();
                 bitCounter += code.length();
 
-            } // END OF FOR LOOP
+            //} // END OF FOR LOOP
         } // END OF WHILE LOOP
 
         outFile.close();
-        System.out.println("The number of bytes in the original file: " + numberOfBytes);
-        System.out.println("The bytes from the encoding: " + bitCounter / 8);
-        System.out.println("The number of characters encoded: " + charCount);
-
+//        System.out.println("The number of bytes in the original file: " + numberOfBytes);
+//        System.out.println("The bytes from the encoding: " + bitCounter / 8);
+//        System.out.println("The number of characters encoded: " + charCount);
 
         // ----------- END FILE OUTPUT --------------------------------------------
-
-
-
-		/*
-        Possible code
-
-		 */
 
     }
 
